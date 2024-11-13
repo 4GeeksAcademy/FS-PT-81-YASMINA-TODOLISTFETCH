@@ -16,7 +16,7 @@ const Home = () => {
 	const getDataAsync = async () => {
 		try {
 			const resp = await fetch(url + '/users/' + username);
-			if (resp.status==404) return createUser('something went wrong')
+			if (resp.status == 404) return createUser('something went wrong')
 			if (!resp.ok) throw new Error('something went wrong')
 			const data = await resp.json();
 			setUserData(data)
@@ -96,14 +96,14 @@ const Home = () => {
 
 				<div className="wrapper">
 					<form onSubmit={handleSubmit}>
-						<input className="placetool" type="text" onChange={e => setTask(e.target.value)} 
-						value={task} placeholder="Add a new tool" 
+						<input className="placetool" type="text" onChange={e => setTask(e.target.value)}
+							value={task} placeholder="Add a new tool"
 						/>
 					</form>
 					<ul>
-					{userData.todos?.map(el => <li className="text-item" key={el.id}>{el.label} 
-						-------------<span className="imcross" onClick={() => handleDelete(el.id)}><ImCross /></span>
-					 </li>	)}				 
+						{userData.todos?.map(el => <li className="text-item" key={el.id}>{el.label}
+							-------------<span className="imcross" onClick={() => handleDelete(el.id)}><ImCross /></span>
+						</li>)}
 					</ul>
 				</div>
 			</div>
